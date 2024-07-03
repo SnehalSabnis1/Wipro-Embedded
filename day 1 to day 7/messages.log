@@ -1,0 +1,4 @@
+DEBUG:root:this is a debug log
+INFO:root:this is a information log
+WARNING:root:this is a warning log
+CRITICAL:root:this is critical log

@@ -1,0 +1,10 @@
+#fh = open('file1.txt','a')
+#fh.write("Python is easy language\n")
+#fh.write("Python is high level language\n")
+#fh.write("Python is portable\n")
+#fh.write("Python is extendable\n")
+#fh.close()
+
+fh = open('file1.txt','a')
+fh.writelines(['Programming in Python is fun\n','Python is easy to learn\n'])
+fh.close()
