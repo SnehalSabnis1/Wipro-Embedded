@@ -1,0 +1,36 @@
+<!DOCTYPE html > <html lang ="en"> <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function postval(){
+            var formdata = new FormData()
+            u = document.getElementById("customername")
+            e = document.getElementById("customeremail")
+            formdata.append(u.name, u.value)
+            formdata.append(e.name, e.value)
+            var xhr = new XMLHttpRequest()
+     
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    document.write(xhr.responseText)
+                    }
+                }
+                xhr.open("POST","/userdetails")
+                xhr.send(formdata)
+               
+            }
+        </script>
+    </head>
+    <body>
+        <form action = "/getValues" method="get">
+            <p>Name : <input type="text" name="customername" id="customername"></p>
+            <p>Email : <input type="text" name="customeremail" id="customeremail"></p>
+            <p> <input type="button" value="submit" onclick="postval()"> </p>
+     
+        </form>
+    </body>
+    </html>    

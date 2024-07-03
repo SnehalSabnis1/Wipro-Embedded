@@ -1,0 +1,42 @@
+form{
+    border: 5px solid rosybrown;
+    margin: 20px auto;
+    width: fit-content;
+    padding: 50px;
+    }
+
+    label{
+        display: inline-block;
+        width: 120px;
+        font-weight: bold;
+        font-size: 19px;
+        margin-top: 10px;
+    } 
+        
+    input{
+        outline: palegoldenrod;
+        }
+        #sub{
+            text-align: center;
+            margin-top: 20px;
+ 
+        }
+        #butt{
+            background-color: royalblue;
+            outline: beige;
+            width: 120px;
+            height: 30px;
+            color: lightsalmon;
+            border: pink;
+            font-size: 20px;
+           
+ 
+        }
+        #butt:hover{
+            background-color: yellowgreen;
+        }
+        .error{
+            margin-top: 55px;
+            color: red;
+        }
+        

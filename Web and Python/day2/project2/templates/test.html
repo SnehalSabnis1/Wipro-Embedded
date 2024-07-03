@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function getVal(v,idx){
+            console.log(idx,v)
+        }
+        function updateArray(){
+            const fruits = ["banana","orange","apple","kiwi"]
+            fruit = document.getElementById("example-2").value
+            //fruits.push(fruit)
+            //fruits.unshift(fruit)
+            //fruit=fruits.pop()
+            //console.log("value returned "+fruit)
+            //console.log(fruits)
+            fruits.forEach(getVal)
+        }
+        let getProduct= () => {
+            a=5
+            b=10
+            prod=a*b
+            document.getElementById("example-2").value=prod
+        }
+        /*function getProduct(){
+            a=5
+            b=10
+            prod=a*b
+            document.getElementById("example-1").value=prod
+        }
+        */
+        function showValues(){
+            let length = 16
+            console.log(typeof length)
+            let person = {
+                firstname:'Bob',
+                lastname:'Smith',
+                fullname: function() {
+                return this.firstname+" "+this.lastname
+                }
+            }
+            console.log(person.firstname,person.lastname,person.fullname())
+        }
+    </script>
+</head>
+<body>
+    <h1>Javascript Examples</h1>
+    <input type="text" name="example-1" id="example-2">
+    <input type="button" value="Test" onclick="updateArray()">
+</body>
+</html>

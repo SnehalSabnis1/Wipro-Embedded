@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script 
+    type="text/javascript" src="{{ url_for('static',filename='js/test.js') }}">
+    </script>
+   
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+  
+</head>
+<body>
+    <form action="/addproduct" method="post">
+        <p>ProductName: <input type="text" name="productname" id="productname"></p>
+        <p>ProductUnit: <input type="text" name="productunit" id="productunit"></p>
+        <p> <input type="button" value="submit" id="butt" onclick="postVal()"> </p>
+    </form>
+</body>
+</html>

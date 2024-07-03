@@ -1,0 +1,15 @@
+div#errmsg{
+
+    margin-top: 55px;
+
+    color: red;
+
+}
+
+div#successmsg{
+
+    margin-top: 55px;
+
+    color: green;
+   
+}
