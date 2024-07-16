@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: lightcyan;
+            background-image: url('https://wallpapercave.com/wp/wp3015511.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .wel {
+            text-align: center;
+            margin-bottom: 20px;
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            background: linear-gradient(to left,
+                    red,
+                    violet,
+                    blue,
+                    green,
+                    red);
+             background-clip: text;
+            color: transparent;
+        }
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            transform: translateX(-20px); /* Shift login container slightly to the left */
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .login-container input {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .login-container input:focus {
+            border-color: #aaa;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .login-container button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: gray;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .login-container button[type="submit"]:hover {
+            background-color: rgba(0, 0, 0, 0.669);
+        }
+        .login-container button[type="submit"]:active {
+            background-color: gray;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="wel">
+        <p style="font-size:30px;">Welcome to Color Catalogue Digital Shop</p>
+        <p style="font-size: 15px;">Discover, Choose, and Shine with Your Perfect Colors</p>
+    </div>
+    <form id="loginForm">
+        <div class="login-container">
+            <h2>Login</h2>
+            <input type="text" id="username" name="username" placeholder="Username" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </div>
+    </form>
+
+    <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const passwordRegex = /^[A-Za-z0-9]{4,8}$/;
+
+        if (!passwordRegex.test(password)) {
+            alert('Password must be between 4 and 8 characters long and contain only letters and numbers.');
+            return false;
+        }
+
+
+            // Submit the form if validation passes
+        
+        fetch('http://localhost:8057/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username: username, password: password })
+        })
+        .then(response => {
+            if (response.ok) {
+            	localStorage.setItem('uesrname',username);
+                window.location.href = 'color.html';
+            } else {
+                return response.text().then(text => { throw new Error(text) });
+            }
+        })
+        .catch(error => {
+            alert(error.message);
+        });
+     });
+    
+       
+    </script>
+</body>
+</html>

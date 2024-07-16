@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Results</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body { font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
+            background-image: url('https://wallpapercave.com/wp/wp3015511.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .container { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
+        .result { margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        .result.available { background-color: whitesmoke; }
+        .result.unavailable { background-color: whitesmoke; }
+        .back-button { width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; text-align: center; }
+        .back-button:hover { background-color: #45a049; }
+        .logout-button{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 19vh; 
+  width: 53vw; 
+
+  }
+    </style>
+    
+</head>
+<body>
+	  <h1><p style="color: yellow">Welcome, <span id="username-display"></span>!&#127882</p></h1>
+      <span id="userName"></span>
+      <div class="container">
+        <h3 style="color: whitesmoke;">Your Selections</h3>
+        <div class="result available">
+          <p>Color 1: <span id="color1"></span></p>
+        </div>
+        <div class="result unavailable">
+          <p>Color 2: <span id="color2"></span></p>
+        </div>
+        <div class="result available">
+          <p>Color 3: <span id="color3"></span></p>
+        </div>
+        <!-- <div class="back-button" onclick="window.location.href='color-selection.html'">Back to Selection</div> -->
+        <button type="button" class="btn btn-success" onclick="window.location.href='color.html'">Back to Selection</button>
+        <button type="button" class="btn btn-warning" onclick="window.location.href='thankyou.html'" style="margin-left: 8rem;" >Logout</button>
+      </div>
+
+      <script>
+        window.onload = function() {
+          const userName = localStorage.getItem('userName');
+          const username = localStorage.getItem('username');
+          
+          document.getElementById('username-display').textContent = username;
+
+          const selectedColors = JSON.parse(localStorage.getItem('selectedColors'));
+
+            document.getElementById('userName').innerText = userName;
+            document.getElementById('userName').innerText = userName;
+            document.getElementById('color1').innerText = selectedColors[0] || 'N/A';
+            document.getElementById('color2').innerText = selectedColors[1] || 'N/A';
+            document.getElementById('color3').innerText = selectedColors[2] || 'N/A';
+          const colors = [
+            { name: "Red", value: "#FF0000" },
+            { name: "Green", value: "#00FF00" },
+            { name: "Blue", value: "#0000FF" },
+            { name: "Grey", value: "#808080" },
+            { name: "Orange", value: "#FFA500" },
+            { name: "Teal", value: "#008080" },
+            { name: "Whitesmoke", value: "#F5F5F5" },
+            { name: "Black", value: "#000000" },
+            { name: "Pink", value: "#FFC0CB" }
+          ];
+
+          selectedColors.forEach((color, index) => {
+            const colorObject = colors.find(c => c.name === color);
+            if (colorObject) {
+              document.getElementById(`color${index + 1}`).innerHTML = `<span style="background-color: ${colorObject.value}; width: 20px; height: 20px; display: inline-block;"></span> ${colorObject.name}`;
+            } else {
+              document.getElementById(`color${index + 1}`).innerHTML = 'N/A';
+            }
+          });
+        }
+      </script>
+</body>
+</html>

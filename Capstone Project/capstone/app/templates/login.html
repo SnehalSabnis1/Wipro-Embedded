@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management System - Login</title>
+    <style>
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: lightcyan;
+            background-image: url('https://images.unsplash.com/photo-1568667256549-094345857637?fm=jpg&w=3000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlicmFyaWVzfGVufDB8fDB8fHww');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.2);
+            z-index: 1;
+        }
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .login-container input {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .login-container input:focus {
+            border-color: #aaa;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .login-container button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: teal;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .login-container button[type="submit"]:hover {
+            background-color: #218838;
+        }
+        .login-container button[type="submit"]:active {
+            background-color: #1a7d5a;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <form action="/login" method="post" onsubmit="return validateForm()">
+        <div class="login-container">
+            <h2>Welcome To Library Management Portal</h2>
+            <input type="text" id="username" name="username" placeholder="Username" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </div>
+    </form>
+
+    <script>
+        function validateForm() {
+            const password = document.getElementById('password').value;
+            const passwordRegex = /^[A-Za-z0-9]{4,8}$/;
+
+            if (!passwordRegex.test(password)) {
+                alert('Password must be between 4 and 8 characters long and contain only letters and numbers.');
+                return false;
+            }
+
+            return true; // Submit the form if validation passes
+        }
+    </script>
+</body>
+</html>

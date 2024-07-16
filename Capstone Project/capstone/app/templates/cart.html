@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            background-image: url('https://images.unsplash.com/photo-1568667256549-094345857637?fm=jpg&w=3000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlicmFyaWVzfGVufDB8fDB8fHww');
+            background-size: cover;
+            background-repeat: no-repeat;
+            opacity: 0.9;
+        }
+        .cart-container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            padding-right: -0.5%;
+            background-color: rgba(255, 255, 255, 0.8); /* Adjusted for better readability */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .cart-container h2 {
+            margin-bottom: 20px;
+            color: #333; /* Adjusted for better readability */
+        }
+        .cart-item {
+            margin-bottom: 10px;
+            color: #333; /* Adjusted for better readability */
+        }
+        .cart-item label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .cart-item input[type="date"] {
+            padding: 8px;
+            width: calc(30% - 10px);
+            margin-right: 10px;
+        }
+        .cart-button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .cart-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="cart-container">
+        <h2>Cart</h2>
+        <form id="cartForm" method="POST" action="{{ url_for('cart') }}">
+            <div id="cartItems"></div>
+            <button type="submit" class="cart-button">Checkout</button>
+        </form>
+    </div>
+    <script>
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function loadCart() {
+            const cartItemsDiv = document.getElementById('cartItems');
+            cartItemsDiv.innerHTML = '';
+
+            cart.forEach(book => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = `
+                    <label>${book}</label>
+                    <input type="hidden" name="books[]" value="${book}">
+                    <input type="date" name="start-${book}" onchange="updateEndDate(this, '${book}')">
+                    <input type="date" name="end-${book}">
+                `;
+                cartItemsDiv.appendChild(itemDiv);
+            });
+        }
+
+        function updateEndDate(startDateInput, book) {
+            const startDate = startDateInput.value;
+            if (!startDate) {
+                return;
+            }
+            const endDate = calculateEndDate(startDate, 30); // Calculate end date
+            const endDateInput = document.querySelector(`input[name="end-${book}"]`);
+            endDateInput.value = endDate;
+        }
+
+        function calculateEndDate(startDate, days) {
+            let date = new Date(startDate);
+            let dayCount = 0;
+            while (dayCount < days) {
+                date.setDate(date.getDate() + 1);
+                if (date.getDay() !== 0 && date.getDay() !== 6) {
+                    dayCount++;
+                }
+            }
+            const year = date.getFullYear();
+            const month = (`0${date.getMonth() + 1}`).slice(-2);
+            const day = (`0${date.getDate()}`).slice(-2);
+            return `${year}-${month}-${day}`; // Return date in YYYY-MM-DD format
+        }
+
+        loadCart();
+    </script>
+</body>
+</html>

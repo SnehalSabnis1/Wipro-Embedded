@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS comics</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+        background-image: url('https://images.unsplash.com/photo-1568667256549-094345857637?fm=jpg&w=3000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlicmFyaWVzfGVufDB8fDB8fHww');
+      background-size: cover;
+      background-repeat: no-repeat;
+      opacity: 0.9;
+      }
+        .comics {
+  max-width: 18rem;
+  margin: 1rem; /* Update margin to add space between comicss */
+  border: 1px solid #796b6b; /* border-success */
+  display: inline-block; /* Update display to make comicss display horizontally */
+  width: 50%;
+ 
+}
+
+
+.comics-header {
+ 
+  border-bottom: 1px solid #198754; /* border-success */
+  padding: 0.5rem 1rem;
+  font-weight: bolder;
+  font-size: 20px;
+  color: aliceblue;
+  background: #075c62;
+}
+
+
+.comics-body {
+  color: #05180f; /* text-success */
+  padding: 1rem;
+  background-color: whitesmoke;
+}
+/* .comics-body input[type="checkbox"] {
+  margin: 1px;
+  font-weight;
+} */
+.comics-title {
+  margin-bottom: 0.5rem;
+}
+
+
+.comics-text {
+  margin-bottom: 3px;
+  font-weight: 500;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+.comics-footer {
+  background: #26046e;
+  border-top: 2px solid #198754; /* border-success */
+  /* padding: 0.5rem 1rem; */
+  font-size: larger;
+  color: aliceblue;
+  padding: 8px;
+  font-weight: bolder;
+  margin-left: 80px;
+  border-radius: 10px;
+ 
+}
+.comics-footer:hover{
+  background-color: rgb(35, 7, 149);
+
+
+}
+
+
+/* Add this to make the comicss display horizontally */
+.comics-container {
+  display: flex;
+  flex-wrap: wrap; /* Add this to make the comicss wrap to the next line */
+  justify-content: center; /* Add this to center the comicss horizontally */
+  align-items: center;
+  background-image: url('https://images.unsplash.com/photo-1568667256549-094345857637?fm=jpg&w=3000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlicmFyaWVzfGVufDB8fDB8fHww');
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.9;
+  /* padding: 20px; */
+ 
+}
+    </style>
+</head>
+<body>
+    <div class="comics-container">
+        <div class="comics" style="max-width: 18rem;">
+          <div class="comics-header" >Sandman</div>
+          <div class="comics-body">
+            <!-- <h5 class="comics-title"><b>The Shining</b></h5> -->
+            <p class="comics-text">Neil Gaiman</p>
+            <p class="comics-text">Published in 1989</p>
+            <!-- <input type="checkbox" id="horror-checkbox" name="horror-checkbox"> -->
+            <input type="checkbox" value="Sandman" onclick="addToCart(this)">
+            <label for="horror-checkbox" style="font-weight: bold;">Select</label>
+          </div>
+          <button class="comics-footer" onclick="addCart()">Add to cart</button>
+        </div>
+        <div class="comics" style="max-width: 18rem;">
+          <div class="comics-header">Maus</div>
+          <div class="comics-body">
+            <!-- <h5 class="comics-title" style="font-weight: bold;">By Frank Herbert</h5> -->
+            <p class="comics-text">Art Spiegelman</p>
+            <p class="comics-text">Published in 1980</p>
+            <!-- <input type="checkbox" id="science-checkbox" name="science-checkbox"> -->
+            <input type="checkbox" value="Maus" onclick="addToCart(this)">
+            <label for="science-checkbox" style="font-weight: bold;">Select</label>
+          </div>
+          <button class="comics-footer" onclick="addCart()">Add to cart</button>
+         
+        </div>
+        <div class="comics" style="max-width: 18rem;">
+            <div class="comics-header">The Dark Knight Returns</div>
+            <div class="comics-body">
+              <!-- <h5 class="comics-title"><b>Gone</b></h5> -->
+              <p class="comics-text">Frank Miller</p>
+              <p class="comics-text">Published in 1986</p>
+              <!-- <input type="checkbox" id="mystery-checkbox" name="mystery-checkbox"> -->
+              <input type="checkbox" value="The Dark Knight Returns" onclick="addToCart(this)">
+              <label for="mystery-checkbox" style="font-weight: bold;">Select</label>    
+            </div>
+            <button class="comics-footer" onclick="addCart()">Add to cart</button>
+        </div>
+
+
+        <div class="comics" style="max-width: 18rem;">
+            <div class="comics-header">Watchmen</div>
+            <div class="comics-body">
+              <!-- <h5 class="comics-title"><b>The Shining</b></h5> -->
+              <p class="comics-text">Alan Moore</p>
+              <p class="comics-text">Published in 1986</p>
+              <!-- <input type="checkbox" id="horror-checkbox" name="horror-checkbox"> -->
+              <input type="checkbox" value="Watchmen" onclick="addToCart(this)">
+
+
+              <label for="horror-checkbox" style="font-weight: bold;">Select</label>
+            </div>
+            <button class="comics-footer" onclick="addCart()">Add to cart</button>
+               
+       
+      </div>
+       
+      <script>
+        const cart = [];
+
+
+        function addToCart(checkbox) {
+            if (checkbox.checked) {
+                if (!cart.includes(checkbox.value)) {
+                    cart.push(checkbox.value);
+                    checkbox.disabled = true;
+                }
+            }
+        }
+
+
+        function addCart() {
+          const cartData = {
+              books: cart
+          };
+          fetch('/cart', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(cartData)
+          })
+          .then(response => {
+              if (response.ok) {
+                  window.location.href = "{{ url_for('cart') }}";
+              } else {
+                  alert('Failed to add books to cart.');
+              }
+          })
+          .catch(error => {
+              console.error('Error:', error);
+          });
+      }
+      </script>
+       
+
+
+   
+</body>
+</html>
+
