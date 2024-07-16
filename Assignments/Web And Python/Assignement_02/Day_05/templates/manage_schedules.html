@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends "base.html" %}
+
+    {% block content %}
+    <h1>Manage Schedules</h1>
+    <form method="POST" action="{{ url_for('manage_schedules') }}">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.route_id.label }}<br>
+            {{ form.route_id(size=32) }}
+        </p>
+        <p>
+            {{ form.departure_time.label }}<br>
+            {{ form.departure_time() }}
+        </p>
+        <p>
+            {{ form.arrival_time.label }}<br>
+            {{ form.arrival_time() }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <h2>Existing Schedules</h2>
+    <ul>
+        {% for schedule in schedules %}
+            <li>Route ID {{ schedule.route_id }}: {{ schedule.departure_time }} - {{ schedule.arrival_time }}</li>
+        {% endfor %}
+    </ul>
+    {% endblock %}
+    
+       
+</body>
+</html>

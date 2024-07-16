@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends "base.html" %}
+
+{% block content %}
+<h1>Manage Routes</h1>
+<form method="POST" action="{{ url_for('manage_routes') }}">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.name.label }}<br>
+        {{ form.name(size=32) }}
+    </p>
+    <p>
+        {{ form.start_location.label }}<br>
+        {{ form.start_location(size=32) }}
+    </p>
+    <p>
+        {{ form.end_location.label }}<br>
+        {{ form.end_location(size=32) }}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
+<h2>Existing Routes</h2>
+<ul>
+    {% for route in routes %}
+        <li>{{ route.name }}: {{ route.start_location }} to {{ route.end_location }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+</body>
+</html>
