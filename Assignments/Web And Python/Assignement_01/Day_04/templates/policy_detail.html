@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policy Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Policy Detail</h2>
+        <div class="card">
+            <div class="card-header">
+                {{ policy.policy_number }}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ policy.policy_holder_name }}</h5>
+                <p class="card-text">Coverage Amount: {{ policy.coverage_amount }}</p>
+                <p class="card-text">{{ policy.description }}</p>
+                <a href="{{ url_for('policy_list') }}" class="btn btn-primary">Back to Policies</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policy List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Policy List</h2>
+        <a href="{{ url_for('policy_edit') }}" class="btn btn-primary mb-3">Add New Policy</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Policy Number</th>
+                    <th>Policy Holder Name</th>
+                    <th>Coverage Amount</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for policy in policies %}
+                <tr>
+                    <td>{{ policy.policy_number }}</td>
+                    <td>{{ policy.policy_holder_name }}</td>
+                    <td>{{ policy.coverage_amount }}</td>
+                    <td>
+                        <a href="{{ url_for('policy_detail', id=policy.id) }}" class="btn btn-info">View</a>
+                        <a href="{{ url_for('policy_edit', id=policy.id) }}" class="btn btn-warning">Edit</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
